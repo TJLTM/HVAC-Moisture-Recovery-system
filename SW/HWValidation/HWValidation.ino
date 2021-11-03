@@ -20,6 +20,13 @@ void setup() {
 }
 
 void loop() {
+digitalWrite(Output2,HIGH);
+delay(1000);
+digitalWrite(Output2,LOW);
+digitalWrite(Output3,HIGH);
+delay(1000);delay(1000);
+digitalWrite(Output3,LOW);
+
 digitalWrite(Output1,HIGH); // Energize the Galvanic sensors
 ReadTankLevel();
 digitalWrite(Output1,LOW); // Turn off the sensors 
@@ -35,19 +42,19 @@ void ReadTankLevel(){
   bitWrite(TankStatus,3,digitalRead(Full));
 
   switch(TankStatus){
-     case 0x0000:
+     case 0:
       LastLevel = "Empty";
       break;
-    case 0x0001:
+    case 1:
       LastLevel = "1/4";
       break;
-    case 0x0011:
+    case 3:
       LastLevel = "1/2";
       break;
-    case 0x0111:
+    case 7:
       LastLevel = "3/4";
       break;
-    case 0x1111:
+    case 15:
       LastLevel = "Full";
       break;
     default:
